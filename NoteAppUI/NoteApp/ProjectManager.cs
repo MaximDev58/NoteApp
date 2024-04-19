@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace NoteApp
-{ 
+{
     /// <summary>
-    /// Класс - менеджер проектов
+    /// Статический класс - менеджер проектов
     /// </summary>
-    public class ProjectManager
+    public static class ProjectManager
     {
         /// <summary>
         /// Закрытая константа пути
@@ -19,10 +19,10 @@ namespace NoteApp
         private const string _location = "C:\\Users\\Maxim Demchenko\\Documents\\NoteApp.notes";
 
         /// <summary>
-        /// Метод сохранения списка заметок
+        /// Статический метод сохранения списка заметок
         /// </summary>
         /// <param name="project"> обьект класса Project - список заметок</param>
-        public void SaveProject(Project project)
+        public static void SaveProject(Project project)
         {
             JsonSerializer serializer = new JsonSerializer();
             
@@ -33,10 +33,10 @@ namespace NoteApp
             }
         }
         /// <summary>
-        /// метод чтения списка заметок по пути
+        /// Статический метод чтения списка заметок по пути
         /// </summary>
         /// <param name="project">Объект класса Project - список заметок из файла</param>
-        public void ReadProject(Project project)
+        public static void ReadProject(Project project)
         {
             JsonSerializer serializer = new JsonSerializer();
             //Открываем поток для чтения из файла с указанием пути

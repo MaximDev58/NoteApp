@@ -26,9 +26,8 @@ namespace NoteAppUI
             Project project1 = new Project();
             project1.AddNote(note1);
             project1.AddNote(note2);
-            ProjectManager projMan = new ProjectManager();
-            projMan.SaveProject(project1);
-            projMan.ReadProject(project1);
+            ProjectManager.SaveProject(project1);
+            ProjectManager.ReadProject(project1);
         }
     }
 }

@@ -76,14 +76,32 @@ namespace NoteAppUI
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (TitleTextBox.TextLength > 50)
+            {
+                TitleTextBox.BackColor = Color.Firebrick;
+            }
+            else
+            {
+                TitleTextBox.BackColor = Color.White;
+                
+            }
             editNote.set_title(TitleTextBox.Text);
             TimeOfLastChangeLabel.Text = editNote.get_timeOfLastChange();
         }
 
         private void NoteTextRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            editNote.set_noteText(NoteTextRichTextBox.Text);
-            TimeOfLastChangeLabel.Text = editNote.get_timeOfLastChange();
+            if (NoteTextRichTextBox.Text == "")
+            {
+                NoteTextRichTextBox.BackColor = Color.Firebrick;
+            }
+            else
+            {
+                NoteTextRichTextBox.BackColor = Color.White;
+                editNote.set_noteText(NoteTextRichTextBox.Text);
+                TimeOfLastChangeLabel.Text = editNote.get_timeOfLastChange();
+            }
+            
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

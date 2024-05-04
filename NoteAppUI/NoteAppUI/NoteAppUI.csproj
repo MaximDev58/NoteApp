@@ -49,14 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditNote.Designer.cs">
+      <DependentUpon>FormEditNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditNote.resx">
+      <DependentUpon>FormEditNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -68,6 +86,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -88,6 +107,33 @@
       <Project>{bcb97ecf-0d6d-49b5-90e7-d487b3c6afd6}</Project>
       <Name>NoteApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-sticky-notes-7235483.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-sticky-notes-7235561.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-sticky-notes-7235511.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-close-cross-in-circular-outlined-interface-button-58253.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-pencil-1024143.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-plus-3303893.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-plus-3303893 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-pencil-1024143 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-close-cross-in-circula.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

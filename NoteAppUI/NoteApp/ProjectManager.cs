@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
+
+
 namespace NoteApp
 {
     /// <summary>
@@ -26,7 +28,7 @@ namespace NoteApp
         {
             JsonSerializer serializer = new JsonSerializer();
             
-            using (StreamWriter sw = new StreamWriter(@_location))
+            using (StreamWriter sw = new StreamWriter(@"C:\NoteApp.notes"))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
@@ -40,7 +42,7 @@ namespace NoteApp
         {
             JsonSerializer serializer = new JsonSerializer();
             //Открываем поток для чтения из файла с указанием пути
-            using (StreamReader sr = new StreamReader(@_location))
+            using (StreamReader sr = new StreamReader(@"C:\NoteApp.notes"))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 //Вызываем десериализацию и явно преобразуем результат в целевой тип данных

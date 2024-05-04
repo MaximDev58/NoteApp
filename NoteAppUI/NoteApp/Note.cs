@@ -85,7 +85,7 @@ namespace NoteApp
 
         public string get_creationTime()
         {
-            return "Время создания заметки: " + get_timeOfLastChange();
+            return get_timeOfLastChange();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace NoteApp
 
         public string get_timeOfLastChange()
         {
-            return "Время последнего изменения заметки: " + _timeOfLastChange;
+            return _timeOfLastChange;
         }
 
         /// <summary>
@@ -111,17 +111,103 @@ namespace NoteApp
                 _noteText = this._noteText,
                 _creationTime = this._creationTime,
                 _timeOfLastChange = DateTime.Now.ToString()
-        };
+            };
         }
+        
         /// <summary>
         /// конструктор
         /// </summary>
         public Note()
         {
-            _noteText = "Без названия";
+            _title = "Без названия";
             _creationTime = DateTime.Now.ToString();
             _timeOfLastChange = DateTime.Now.ToString();
-            
+            _noteText = "fkkfkfkffkkfkfffffffffkfkkfkffkfkfkfkkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkk\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +  
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n"+ 
+                        "fkkfkfkffkkfkfffffffffkfkkfkffkfkfkfkkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkfkk\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n" +
+                        "jgjggjgjgjgjgjgjgjggjgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgj\n";
+
+        }
+
+        public override string ToString()
+        {
+            return $"{_title}";
         }
         /// <summary>
         /// деконструктор

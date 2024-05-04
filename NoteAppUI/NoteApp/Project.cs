@@ -10,12 +10,16 @@ namespace NoteApp
     /// Класс проекта, содержащий список заметок
     /// </summary>
     public class Project
-    {   
+    {
         /// <summary>
         /// список заметок и сеттер отдельной функцией
         /// </summary>
         private List<Note> _noteList;
 
+        public List<Note> get_noteList()
+        {
+            return _noteList;
+        }
         public void set_noteList(List<Note> value)
         {
             _noteList = value;
@@ -41,6 +45,10 @@ namespace NoteApp
         public void AddNote(Note note)
         {
             _noteList.Add(note);
+        }
+        public void RemoveNote(Note note)
+        {
+            _noteList.Remove(note);
         }
     }
 }

@@ -101,7 +101,7 @@ namespace NoteAppUI
             {
                 if (note.get_category().ToString() == CategotyComboBox.SelectedItem.ToString())
                 {
-                    NoteListBox.Items.Add(note); 
+                    NoteListBox.Items.Add(note);
                     NoteListBox.DisplayMember = note.ToString();
                 }
             }
@@ -123,7 +123,15 @@ namespace NoteAppUI
                 NoteListBox.Items.RemoveAt(selectedIndex);
                 project.AddNote(updatedData);
                 project.get_noteList().RemoveAt(selectedIndex);
-                NoteListBox.Items.Insert(selectedIndex, updatedData);
+                NoteListBox.Items.Clear();
+
+                foreach (Note note in project.get_noteList())
+                {
+
+                    NoteListBox.Items.Add(note);
+                    NoteListBox.DisplayMember = note.ToString();
+
+                }
             }
 
         }

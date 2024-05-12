@@ -15,6 +15,7 @@ namespace NoteApp
         /// список заметок и сеттер отдельной функцией
         /// </summary>
         private List<Note> _noteList;
+        public List<Note> NoteList { get { return _noteList; } set { _noteList = value; } }
 
         public List<Note> get_noteList()
         {

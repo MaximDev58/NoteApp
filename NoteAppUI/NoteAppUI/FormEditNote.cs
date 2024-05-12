@@ -15,9 +15,10 @@ namespace NoteAppUI
     public partial class FormEditNote : Form
     {
         
-        private Note editNote = new Note();
-        private Note cancelNote = new Note();
-        
+        private Note editNote;
+        private Note cancleNote = new Note();
+
+
         public Note Note
         { 
             get
@@ -34,11 +35,9 @@ namespace NoteAppUI
                     CreationTimeLabel.Text = editNote.get_creationTime();
                     TimeOfLastChangeLabel.Text = editNote.get_timeOfLastChange();
                     NoteTextRichTextBox.Text = editNote.get_noteText();
-                    TitleTextBox.Text = cancelNote.get_title();
-                    CategoryComboBox.SelectedItem = cancelNote.get_category();
-                    CreationTimeLabel.Text = cancelNote.get_creationTime();
-                    TimeOfLastChangeLabel.Text = cancelNote.get_timeOfLastChange();
-                    NoteTextRichTextBox.Text = cancelNote.get_noteText();
+                    cancleNote.set_title(editNote.get_title());
+                    cancleNote.set_noteText(editNote.get_noteText());
+                    cancleNote.set_category(editNote.get_category());
                 }
             }
         }
@@ -93,7 +92,7 @@ namespace NoteAppUI
         {
             if (NoteTextRichTextBox.Text == "")
             {
-                NoteTextRichTextBox.BackColor = Color.Firebrick;
+                NoteTextRichTextBox.BackColor = Color.Red;
             }
             else
             {
@@ -112,9 +111,10 @@ namespace NoteAppUI
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            editNote.set_title(cancelNote.get_title());
-            editNote.set_category(cancelNote.get_category());
-            editNote.set_noteText(cancelNote.get_noteText());
+            editNote.set_title(cancleNote.get_title());
+            editNote.set_noteText(cancleNote.get_noteText());  
+            editNote.set_category(cancleNote.get_category());
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

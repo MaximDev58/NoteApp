@@ -103,7 +103,7 @@ using System.Xml.Linq;
 
             Assert.AreEqual(expected, actual, "Геттер времени последнего изменения возвращает неправильнo");
         }
-        [Test(Description = "Тестирование констуктора без параметров.")]
+        [Test(Description = "Тестирование констуктора без параметров")]
         public void TestСonstructorWithoutParameters()
         {
             Assert.DoesNotThrow(() => new Note());

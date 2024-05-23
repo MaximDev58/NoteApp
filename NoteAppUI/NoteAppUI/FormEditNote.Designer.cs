@@ -112,10 +112,10 @@
             this.NoteTextRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NoteTextRichTextBox.Location = new System.Drawing.Point(-1, 13);
+            this.NoteTextRichTextBox.Location = new System.Drawing.Point(3, 12);
             this.NoteTextRichTextBox.Name = "NoteTextRichTextBox";
             this.NoteTextRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.NoteTextRichTextBox.Size = new System.Drawing.Size(770, 327);
+            this.NoteTextRichTextBox.Size = new System.Drawing.Size(766, 327);
             this.NoteTextRichTextBox.TabIndex = 8;
             this.NoteTextRichTextBox.Text = "";
             this.NoteTextRichTextBox.TextChanged += new System.EventHandler(this.NoteTextRichTextBox_TextChanged);

@@ -15,10 +15,11 @@ namespace NoteAppUI
 {
     public partial class FormMain : Form
     {
-        private Project project = new Project();
+        Project project = new Project();
         public FormMain()
         {
             InitializeComponent();
+            CategotyComboBox.Items.Add("All");
             CategotyComboBox.Items.Add(EnumNoteCategory.Job);
             CategotyComboBox.Items.Add(EnumNoteCategory.Home);
             CategotyComboBox.Items.Add(EnumNoteCategory.HealthAndSports);
@@ -26,20 +27,23 @@ namespace NoteAppUI
             CategotyComboBox.Items.Add(EnumNoteCategory.Documents);
             CategotyComboBox.Items.Add(EnumNoteCategory.Finance);
             CategotyComboBox.Items.Add(EnumNoteCategory.Others);
-            ProjectManager.ReadProject(project);
             
         }
 
 
         private void FormMain_Load(object sender, EventArgs e)
-        {
+        {            
+            project = ProjectManager.ReadProject(project);            
+            TitleLabel.Text = $"Название: {project.SelectedNote.get_title()}";
+            CategoryLabel.Text = $"Категория: {project.SelectedNote.get_category()}";
+            CreationTimeLabel.Text = $"Время создания заметки: {project.SelectedNote.get_creationTime()}";
+            TimeOfLastChangeLabel.Text = $"Время последнего изменения заметки: {project.SelectedNote.get_timeOfLastChange()}";
+            NoteTextLabel.Text = $"{project.SelectedNote.get_noteText()}";
             foreach (Note note in project.get_noteList())
             {
                 NoteListBox.Items.Add(note);
                 NoteListBox.DisplayMember = note.ToString();
             }
-
-
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,11 +67,13 @@ namespace NoteAppUI
 
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (NoteListBox.SelectedItem != null)
             {
                 Note selectedNote =
                     (Note)NoteListBox
-                        .SelectedItem; 
+                        .SelectedItem;
+                project.SelectedNote = (Note)NoteListBox.SelectedItem;
                 TitleLabel.Text = $"Название: {selectedNote.get_title()}";
                 CategoryLabel.Text = $"Категория: {selectedNote.get_category()}";
                 CreationTimeLabel.Text = $"Время создания заметки: {selectedNote.get_creationTime()}";
@@ -94,15 +100,27 @@ namespace NoteAppUI
             
         }
 
+
         private void CategotyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             NoteListBox.Items.Clear();
-            foreach (Note note in project.get_noteList())
+            if (CategotyComboBox.SelectedItem == "All")
             {
-                if (note.get_category().ToString() == CategotyComboBox.SelectedItem.ToString())
+                foreach (Note note in project.get_noteList())
                 {
                     NoteListBox.Items.Add(note);
                     NoteListBox.DisplayMember = note.ToString();
+                }
+            }
+            else
+            {
+                foreach (Note note in project.get_noteList())
+                {
+                    if (note.get_category().ToString() == CategotyComboBox.SelectedItem.ToString())
+                    {
+                        NoteListBox.Items.Add(note);
+                        NoteListBox.DisplayMember = note.ToString();
+                    }
                 }
             }
 
@@ -125,17 +143,68 @@ namespace NoteAppUI
                 project.get_noteList().RemoveAt(selectedIndex);
                 NoteListBox.Items.Clear();
 
-                foreach (Note note in project.get_noteList())
+                if (CategotyComboBox.SelectedItem == null)
                 {
-
-                    NoteListBox.Items.Add(note);
-                    NoteListBox.DisplayMember = note.ToString();
-
+                    foreach (Note note in project.get_noteList())
+                    {
+                        NoteListBox.Items.Add(note);
+                        NoteListBox.DisplayMember = note.ToString();
+                    }
+                }
+                if (CategotyComboBox.SelectedItem == "All")
+                {
+                    foreach (Note note in project.get_noteList())
+                    {
+                        NoteListBox.Items.Add(note);
+                        NoteListBox.DisplayMember = note.ToString();
+                    }
+                }
+                else
+                {
+                    foreach (Note note in project.get_noteList())
+                    {
+                        if (note.get_category().ToString() == CategotyComboBox.SelectedItem.ToString())
+                        {
+                            NoteListBox.Items.Add(note);
+                            NoteListBox.DisplayMember = note.ToString();
+                        }
+                    }
                 }
             }
 
         }
 
-        
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            NoteListBox.Items.Clear();
+            project.SortByTime();
+            if (CategotyComboBox.SelectedItem == null)
+            {
+                foreach (Note note in project.get_noteList())
+                {
+                    NoteListBox.Items.Add(note);
+                    NoteListBox.DisplayMember = note.ToString();
+                }
+            }
+            if (CategotyComboBox.SelectedItem == "All")
+            {
+                foreach (Note note in project.get_noteList())
+                {
+                    NoteListBox.Items.Add(note);
+                    NoteListBox.DisplayMember = note.ToString();
+                }
+            }
+            else
+            {
+                foreach (Note note in project.get_noteList())
+                {
+                    if (note.get_category().ToString() == CategotyComboBox.SelectedItem.ToString())
+                    {
+                        NoteListBox.Items.Add(note);
+                        NoteListBox.DisplayMember = note.ToString();
+                    }
+                }
+            }
+        }
     }
 }

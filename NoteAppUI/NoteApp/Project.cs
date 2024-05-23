@@ -25,6 +25,8 @@ namespace NoteApp
         {
             _noteList = value;
         }
+        private Note _selectedNote;
+        public Note SelectedNote { get { return _selectedNote; } set { _selectedNote = value; } }
         /// <summary>
         /// конструктор
         /// </summary>
@@ -39,6 +41,15 @@ namespace NoteApp
         {
             _noteList.Clear();
         }
+        /// <summary>
+        /// Сортировка по времени изменения
+        /// </summary>
+        /// <returns></returns>
+        public void SortByTime()
+        {
+            _noteList.OrderByDescending(x => x.TimeOfLastChange).ToList();
+        }
+  
         /// <summary>
         /// Добавляет новую заметку в список
         /// </summary>

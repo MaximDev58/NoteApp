@@ -46,11 +46,12 @@
             this.TimeOfLastChangeLabel = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NoteTextLabelScrollBar = new System.Windows.Forms.VScrollBar();
+            this.NoteTextLabel = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
-            this.NoteTextLabelScrollBar = new System.Windows.Forms.VScrollBar();
-            this.NoteTextLabel = new System.Windows.Forms.Label();
+            this.SortButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +136,7 @@
             this.NoteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteListBox.FormattingEnabled = true;
-            this.NoteListBox.Location = new System.Drawing.Point(16, 69);
+            this.NoteListBox.Location = new System.Drawing.Point(16, 85);
             this.NoteListBox.Name = "NoteListBox";
             this.NoteListBox.Size = new System.Drawing.Size(188, 316);
             this.NoteListBox.TabIndex = 1;
@@ -197,14 +198,35 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.NoteTextLabelScrollBar);
             this.groupBox1.Controls.Add(this.NoteTextLabel);
-            this.groupBox1.Location = new System.Drawing.Point(262, 129);
+            this.groupBox1.Location = new System.Drawing.Point(210, 129);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(601, 402);
+            this.groupBox1.Size = new System.Drawing.Size(653, 402);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
+            // 
+            // NoteTextLabelScrollBar
+            // 
+            this.NoteTextLabelScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NoteTextLabelScrollBar.Location = new System.Drawing.Point(632, 16);
+            this.NoteTextLabelScrollBar.Name = "NoteTextLabelScrollBar";
+            this.NoteTextLabelScrollBar.Size = new System.Drawing.Size(18, 383);
+            this.NoteTextLabelScrollBar.TabIndex = 1;
+            this.NoteTextLabelScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.NoteTextLabelScrollBar_Scroll);
+            // 
+            // NoteTextLabel
+            // 
+            this.NoteTextLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NoteTextLabel.Location = new System.Drawing.Point(-3, 16);
+            this.NoteTextLabel.Name = "NoteTextLabel";
+            this.NoteTextLabel.Size = new System.Drawing.Size(632, 383);
+            this.NoteTextLabel.TabIndex = 0;
             // 
             // AddButton
             // 
@@ -240,26 +262,22 @@
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
-            // NoteTextLabelScrollBar
+            // SortButton
             // 
-            this.NoteTextLabelScrollBar.Location = new System.Drawing.Point(575, 16);
-            this.NoteTextLabelScrollBar.Name = "NoteTextLabelScrollBar";
-            this.NoteTextLabelScrollBar.Size = new System.Drawing.Size(18, 383);
-            this.NoteTextLabelScrollBar.TabIndex = 1;
-            this.NoteTextLabelScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.NoteTextLabelScrollBar_Scroll);
-            // 
-            // NoteTextLabel
-            // 
-            this.NoteTextLabel.Location = new System.Drawing.Point(0, 16);
-            this.NoteTextLabel.Name = "NoteTextLabel";
-            this.NoteTextLabel.Size = new System.Drawing.Size(572, 383);
-            this.NoteTextLabel.TabIndex = 0;
+            this.SortButton.Location = new System.Drawing.Point(16, 54);
+            this.SortButton.Name = "SortButton";
+            this.SortButton.Size = new System.Drawing.Size(143, 23);
+            this.SortButton.TabIndex = 15;
+            this.SortButton.Text = "Sort by update time";
+            this.SortButton.UseVisualStyleBackColor = true;
+            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 543);
+            this.Controls.Add(this.SortButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.AddButton);
@@ -310,6 +328,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.VScrollBar NoteTextLabelScrollBar;
         private System.Windows.Forms.Label NoteTextLabel;
+        private System.Windows.Forms.Button SortButton;
     }
 }
 

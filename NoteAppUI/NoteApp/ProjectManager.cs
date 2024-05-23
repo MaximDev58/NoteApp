@@ -38,8 +38,10 @@ namespace NoteApp
         /// Статический метод чтения списка заметок по пути
         /// </summary>
         /// <param name="project">Объект класса Project - список заметок из файла</param>
-        public static void ReadProject(Project project)
+        public static Project ReadProject(Project project)
         {
+            project = null;
+
             JsonSerializer serializer = new JsonSerializer();
             //Открываем поток для чтения из файла с указанием пути
             using (StreamReader sr = new StreamReader(@"C:\NoteApp.notes"))
@@ -48,6 +50,7 @@ namespace NoteApp
                 //Вызываем десериализацию и явно преобразуем результат в целевой тип данных
                 project = (Project)serializer.Deserialize<Project>(reader);
             }
+            return project;
         }
     }
 }

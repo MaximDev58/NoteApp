@@ -27,13 +27,13 @@ namespace NoteAppUI
             CategotyComboBox.Items.Add(EnumNoteCategory.Documents);
             CategotyComboBox.Items.Add(EnumNoteCategory.Finance);
             CategotyComboBox.Items.Add(EnumNoteCategory.Others);
-            
+
         }
 
 
         private void FormMain_Load(object sender, EventArgs e)
-        {            
-            project = ProjectManager.ReadProject(project);            
+        {
+            project = ProjectManager.ReadProject(project);
             TitleLabel.Text = $"Название: {project.SelectedNote.get_title()}";
             CategoryLabel.Text = $"Категория: {project.SelectedNote.get_category()}";
             CreationTimeLabel.Text = $"Время создания заметки: {project.SelectedNote.get_creationTime()}";
@@ -44,6 +44,8 @@ namespace NoteAppUI
                 NoteListBox.Items.Add(note);
                 NoteListBox.DisplayMember = note.ToString();
             }
+            this.KeyPreview = true; // Разрешаем форме перехватывать события клавиатуры
+            this.KeyDown += new KeyEventHandler(Delete_KeyDown);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace NoteAppUI
         {
             e.Cancel = MessageBox.Show("Вы хотите закрыть программу?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes;
             ProjectManager.SaveProject(project);
-            
+
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -67,7 +69,7 @@ namespace NoteAppUI
 
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (NoteListBox.SelectedItem != null)
             {
                 Note selectedNote =
@@ -93,11 +95,11 @@ namespace NoteAppUI
             {
                 Note selectedNote =
                     (Note)NoteListBox
-                        .SelectedItem; 
+                        .SelectedItem;
                 project.RemoveNote(selectedNote);
                 NoteListBox.Items.Remove(selectedNote);
             }
-            
+
         }
 
 
@@ -204,6 +206,14 @@ namespace NoteAppUI
                         NoteListBox.DisplayMember = note.ToString();
                     }
                 }
+            }
+        }
+
+        private void Delete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete) // Если нажата клавиша 'a'
+            {
+                RemoveButton.PerformClick(); // Вызываем событие Click кнопки button1
             }
         }
     }
